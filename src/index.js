@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 // Servir archivos estáticos desde la carpeta 'public'
 app.use(express.static(join(__dirname, 'public')));
 
-// Usar las rutas definidas en el router principal
+// Usar las rutas definidas en el router principal Deployar
 app.use('/', indexRouter);
 
 Conectar();
