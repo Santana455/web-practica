@@ -65,6 +65,34 @@
       });
     }
 
+    function mostrarempleados(empleadosData) {
+      const container = document.getElementById('mostrarempleados');
+      container.innerHTML = ''; // Limpiamos el contenedor
+
+      webData.forEach(item => {
+        // Creamos un contenedor para cada 'web'
+        const empleadosDiv = document.createElement('div');
+        empleadosDiv.classList.add('web');
+
+        // Creamos y configuramos el título
+        const titulo = document.createElement('h1');
+        titulo.textContent = item.titulo;
+
+        // Creamos y configuramos la imagen
+        const imagen = document.createElement('img'); // Usamos 'img', no 'src'
+        imagen.src = item.url;
+        imagen.alt = item.titulo;
+
+        // Agregamos los elementos al contenedor de la web
+        empleadosDiv.appendChild(titulo);
+        empleadosDiv.appendChild(imagen);
+
+        // Agregamos el contenedor de la web al contenedor principal
+        container.appendChild(empleadosDiv);
+      });
+    }
+
+
     window.addEventListener('DOMContentLoaded', getweb);
   </script>
 
