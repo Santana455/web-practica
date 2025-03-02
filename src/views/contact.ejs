@@ -8,7 +8,46 @@
 </head>
 <body>
     <%- include('partials/navigation') %>
-    <h1>CONTACTO</h1>
+
+    <h1>Contacto</h1>
+    <h2>Telefono fijo</h2>
+    <img src="/img/Telefono.jpeg" alt="Programando" style="max-width: 300px; width: 100%; height: auto;"><br>
+    <p class="text-gray-300"><strong>PRECIO: 40 soles <br></strong></p>
+    <p class="text-gray-300"><strong>SOLO VALIDO PARA PERU PE<br></strong></p>
+    <p class="text-gray-300"><strong>Es el precio no ilcluye envio<br></strong></p>
+    
+    <h3>Clientes</h3>
+    <img src="/img/Clientes.jpg" alt="Programando" style="max-width: 300px; width: 100%; height: auto;"><br>
+    <p class="text-gray-300"><strong>PRECIO: 40 soles <br></strong></p>
+    <p class="text-gray-300"><strong>SOLO VALIDO PARA PERU PE<br></strong></p>
+    <p class="text-gray-300"><strong>Es el precio no ilcluye envio<br></strong></p>
+
+    <h4>Clientes Web</h4>
+    <img src="/img/Cliente.webp" alt="Programando" style="max-width: 300px; width: 100%; height: auto;">
+    <p class="text-gray-300"><strong>PRECIO: 40 soles <br></strong></p>
+    <p class="text-gray-300"><strong>SOLO VALIDO PARA PERU PE<br></strong></p>
+    <p class="text-gray-300"><strong>Es el precio no ilcluye envio<br></strong></p>
+
+    <main>
+        <section id="contact">
+            <h1>contact Us</h1>
+            <form action="/send-message" method="POST">
+                <div>
+                    <Label for="name">Name:</Label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit"></button>
+            </form>
+        </section>
+    </main>
     <%- include('partials/footer') %>
 </body>
 </html>

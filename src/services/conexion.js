@@ -16,8 +16,23 @@ export async function Conectar(params) {
   const cliente = new Client(config);
   try {
     await cliente.connect();
-    console.log("Conectado a la base de datos");
+    console.log("✅ Conectado a la base de datos");
+  } catch (error) {
+    console.log("❌ Error al conectar: ", error);
+  } finally {
+    await cliente.end();
+  }
+}
+
+export async function TraerWeb() {
+  const client = new Client(config);
+  try {
+    await client.connect();
+    const res = await client.query('SELECT * FROM web');
+    return res.rows;
   } catch (error) {
     console.log(error);
+  } finally {
+    await client.end();
   }
 }
