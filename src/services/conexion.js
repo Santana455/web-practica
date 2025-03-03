@@ -36,3 +36,16 @@ export async function TraerWeb() {
     await client.end();
   }
 }
+
+export async function TraerEmpleados() {
+  const client = new Client(config);
+  try {
+    await client.connect();
+    const res = await client.query('SELECT * FROM empleados');
+    return res.rows;
+  } catch (error) {
+    console.log(error);
+  } finally {
+    await client.end();
+  }
+}

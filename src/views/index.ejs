@@ -64,37 +64,64 @@
         container.appendChild(webDiv);
       });
     }
-
-    function mostrarempleados(empleadosData) {
-      const container = document.getElementById('mostrarempleados');
-      container.innerHTML = ''; // Limpiamos el contenedor
-
-      webData.forEach(item => {
-        // Creamos un contenedor para cada 'web'
-        const empleadosDiv = document.createElement('div');
-        empleadosDiv.classList.add('web');
-
-        // Creamos y configuramos el título
-        const titulo = document.createElement('h1');
-        titulo.textContent = item.titulo;
-
-        // Creamos y configuramos la imagen
-        const imagen = document.createElement('img'); // Usamos 'img', no 'src'
-        imagen.src = item.url;
-        imagen.alt = item.titulo;
-
-        // Agregamos los elementos al contenedor de la web
-        empleadosDiv.appendChild(titulo);
-        empleadosDiv.appendChild(imagen);
-
-        // Agregamos el contenedor de la web al contenedor principal
-        container.appendChild(empleadosDiv);
-      });
-    }
-
+    
+    
 
     window.addEventListener('DOMContentLoaded', getweb);
   </script>
+
+  <!-- Contenedor para mostrar la información de los empleados -->
+<div id="mostrarempleados"></div>
+
+<script>
+  async function getEmpleados() {
+    try {
+      const response = await fetch('http://localhost:3000/api/get-empleados', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      
+      if (response.ok) {
+        const empleados = await response.json();
+        console.log("Los empleados encontrados fueron:");
+        console.log(empleados);
+        mostrarEmpleados(empleados);
+      } else {
+        console.error("Error en la respuesta:", response.status);
+      }
+    } catch (error) {
+      console.error("Error en la petición:", error);
+    }
+  }
+
+  function mostrarEmpleados(empleadosData) {
+    const container = document.getElementById('mostrarempleados');
+    container.innerHTML = ''; // Limpiamos el contenedor
+
+    empleadosData.forEach(empleado => {
+      // Creamos un contenedor para cada empleado
+      const empleadoDiv = document.createElement('div');
+      empleadoDiv.classList.add('empleado');
+
+      // Ejemplo: mostramos nombre y puesto (ajusta según tus datos)
+      const nombre = document.createElement('h2');
+      nombre.textContent = empleado.nombre; // asegúrate de que 'nombre' es una propiedad válida
+
+      const puesto = document.createElement('p');
+      puesto.textContent = "Puesto: " + empleado.puesto; // ajusta la propiedad según tus datos
+
+      // Agregamos los elementos al contenedor del empleado
+      empleadoDiv.appendChild(nombre);
+      empleadoDiv.appendChild(puesto);
+
+      // Agregamos el contenedor del empleado al contenedor principal
+      container.appendChild(empleadoDiv);
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', getEmpleados);
+</script>
+
 
   <%- include('partials/footer') %>
 </body>
