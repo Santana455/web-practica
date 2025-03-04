@@ -49,3 +49,42 @@ export async function TraerEmpleados() {
     await client.end();
   }
 }
+
+export async function TraerAlmacen() {
+  const client = new Client(config);
+  try {
+    await client.connect();
+    const res = await client.query('SELECT * FROM almacen');
+    return res.rows;
+  } catch (error) {
+    console.log(error);
+  } finally {
+    await client.end();
+  }
+}
+
+export async function TraerCarro() {
+  const client = new Client(config);
+  try {
+    await client.connect();
+    const res = await client.query('SELECT * FROM almacen');
+    return res.rows;
+  }catch (error) {
+    console.log(error);
+  }finally {
+    await client.end();
+  }
+}
+
+export async function TraerProductos() {
+  const client = new Client(config);
+  try {
+    await client.connect();
+    const res = await client.query('SELECT * FROM productos');
+    return res.rows;
+  }catch (error) {
+    console.log(error);
+  }finally {
+    await client.end();
+  }
+}

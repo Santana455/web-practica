@@ -122,6 +122,113 @@
   window.addEventListener('DOMContentLoaded', getEmpleados);
 </script>
 
+<!-- Contenedor para mostrar la información del almacen -->
+<div id="mostraralmacen"></div>
+
+<script>
+  async function getAlmacen() {
+    try {
+      const response = await fetch('http://localhost:3000/api/get-almacen', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      
+      if (response.ok) {
+        const almacen = await response.json();
+        console.log("Los registros de almacen encontrados fueron:");
+        console.log(almacen);
+        mostrarAlmacen(almacen);
+      } else {
+        console.error("Error en la respuesta:", response.status);
+      }
+    } catch (error) {
+      console.error("Error en la petición:", error);
+    }
+  }
+
+  function mostrarAlmacen(almacenData) {
+    const container = document.getElementById('mostraralmacen');
+    container.innerHTML = ''; // Limpiamos el contenedor
+
+    almacenData.forEach(item => {
+      // Creamos un contenedor para cada registro del almacen
+      const almacenDiv = document.createElement('div');
+      almacenDiv.classList.add('almacen');
+
+      // Ejemplo: mostramos nombre y descripción (ajusta según tus datos)
+      const nombre = document.createElement('h2');
+      nombre.textContent = item.nombre; // Asegúrate de que 'nombre' es una propiedad válida
+
+      const descripcion = document.createElement('p');
+      descripcion.textContent = "Descripción: " + (item.descripcion || '');
+
+      // Agregamos los elementos al contenedor del registro
+      almacenDiv.appendChild(nombre);
+      almacenDiv.appendChild(descripcion);
+
+      // Agregamos el contenedor del registro al contenedor principal
+      container.appendChild(almacenDiv);
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', getAlmacen);
+</script>
+
+<!-- Contenedor para mostrar la información de los carros -->
+<div id="mostrarcarro"></div>
+
+<script>
+  async function getCarro() {
+    try {
+      const response = await fetch('http://localhost:3000/api/get-carro', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      
+      if (response.ok) {
+        const carro = await response.json();
+        console.log("Los registros de carro encontrados fueron:");
+        console.log(carro);
+        mostrarCarro(carro);
+      } else {
+        console.error("Error en la respuesta:", response.status);
+      }
+    } catch (error) {
+      console.error("Error en la petición:", error);
+    }
+  }
+
+  function mostrarCarro(carroData) {
+    const container = document.getElementById('mostrarcarro');
+    container.innerHTML = ''; // Limpiamos el contenedor
+
+    carroData.forEach(item => {
+      // Creamos un contenedor para cada registro de carro
+      const carroDiv = document.createElement('div');
+      carroDiv.classList.add('carro');
+
+      // Ejemplo: mostramos marca, modelo y precio (ajusta según tus datos)
+      const marca = document.createElement('h2');
+      marca.textContent = "Marca: " + item.marca;
+
+      const modelo = document.createElement('p');
+      modelo.textContent = "Modelo: " + item.modelo;
+
+      const precio = document.createElement('p');
+      precio.textContent = "Precio: " + item.precio;
+
+      // Agregamos los elementos al contenedor del carro
+      carroDiv.appendChild(marca);
+      carroDiv.appendChild(modelo);
+      carroDiv.appendChild(precio);
+
+      // Agregamos el contenedor del carro al contenedor principal
+      container.appendChild(carroDiv);
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', getCarro);
+</script>
 
   <%- include('partials/footer') %>
 </body>
